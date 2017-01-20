@@ -18,11 +18,13 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
+  spec.add_runtime_dependency "activesupport", "~> 5.0.1"
   spec.add_runtime_dependency "dotenv", "~> 2.1.2"
   spec.add_runtime_dependency "hashie", "~> 3.4.6"
   spec.add_runtime_dependency "oauth", "~> 0.5.1"
 
   spec.add_development_dependency "byebug"
+  spec.add_development_dependency "guard-rspec"
   spec.add_development_dependency "rspec", "~> 3.5"
   spec.add_development_dependency "rspec-its", "~> 1.2"
   spec.add_development_dependency "webmock", "~> 2.3.2"
