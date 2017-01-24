@@ -3,6 +3,8 @@ module Rule1
     class Option < Model
       property :symbol, from: :rootsymbol
       property :mark, from: :last, coerce: Float
+      property :bid, coerce: Float
+      property :ask, coerce: Float
       property :strike_price, from: :strikeprice, coerce: Float
       property :days_to_expiration, coerce: Integer
       property :subclass, from: :op_subclass
@@ -26,7 +28,8 @@ module Rule1
       end
 
       def to_s
-        string = "Strike: #{strike_price}\n"
+        string = "Strike: " + "%.2f" % strike_price + "\n"
+        string << "Open Interest: #{open_interest}\n"
         string << "Volume: #{volume}\n"
         string << "ARORC: "
         string << "%.2f" % "#{arorc * 100}"

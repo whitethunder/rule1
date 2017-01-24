@@ -1,0 +1,76 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.tradeking.com/v1/market/ext/quotes.json?symbols=AAPL,GOOG
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - OAuth gem v0.5.1
+      Authorization:
+      - OAuth oauth_consumer_key="key", oauth_nonce="nonce",
+        oauth_signature="signature", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1484983645", oauth_token="token",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sat, 21 Jan 2017 07:27:26 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - __cfduid=de8b4ab09b4057bd1727b0ba489b514fd1484983646; expires=Sun, 21-Jan-18
+        07:27:26 GMT; path=/; domain=.tradeking.com; HttpOnly
+      Vary:
+      - Accept-Encoding
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Expires:
+      - "-1"
+      X-Ratelimit-Used:
+      - '3'
+      X-Ratelimit-Expire:
+      - '1485001595.63408'
+      X-Ratelimit-Limit:
+      - '60'
+      X-Ratelimit-Remaining:
+      - '57'
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Content-Type, Authorization, Accept
+      Access-Control-Allow-Methods:
+      - GET, POST, PUT, DELETE, OPTIONS
+      Server:
+      - cloudflare-nginx
+      Cf-Ray:
+      - 32490b2bf9811bc1-SEA
+    body:
+      encoding: ASCII-8BIT
+      string: '{ "response":{ "@id":"74dbfbad-4ac2-4401-8a65-fdc5c072646c", "elapsedtime":
+        "0", "quotes":{"quote":[{"adp_100":"114.2333","adp_200":"110.4806","adp_50":"115.8681","adv_21":"27453882","adv_30":"25011777","adv_90":"31536368","ask":"120.0600","ask_time":"00:00","asksz":"2","basis":"na","beta":"1.0097","bid":"120.0200","bid_time":"00:00","bidsz":"4","bidtick":"d","chg":"0","chg_sign":"e","chg_t":"na","cl":"119.7800","contract_size":"na","cusip":"na","date":"2017-01-20","datetime":"2017-01-20T00:00:00-05:00","days_to_expiration":"na","div":"0.5700","divexdate":"20161103","divfreq":"Q","divpaydt":"20161110","dollar_value":"3911136322.3891","eps":"8.2900","exch":"NASD","exch_desc":"NASDAQ","hi":"120.4500","iad":"2.2800","idelta":"na","igamma":"na","imp_volatility":"na","incr_vl":"2763318","irho":"na","issue_desc":"na","itheta":"na","ivega":"na","last":"120.0000","lo":"119.7346","name":"APPLE
+        INC","op_delivery":"na","op_flag":"1","op_style":"na","op_subclass":"na","openinterest":"na","opn":"120.4500","opt_val":"na","pchg":"0.00","pchg_sign":"na","pcls":"120.0000","pe":"14.4753","phi":"120.0900","plo":"119.3700","popn":"119.4000","pr_adp_100":"114.1822","pr_adp_200":"110.4127","pr_adp_50":"115.5875","pr_date":"2017-01-19","pr_openinterest":"na","prbook":"4.9896","prchg":"0.3800","prem_mult":"na","put_call":"na","pvol":"25597291","qcond":"0","rootsymbol":"na","secclass":"0","sesn":"na","sho":"5332313000","strikeprice":"na","symbol":"AAPL","tcond":"29","timestamp":"1484983646","tr_num":"148441","tradetick":"e","trend":"na","under_cusip":"na","undersymbol":"na","vl":"32597892","volatility12":"0.2232","vwap":"119.9812","wk52hi":"120.5000","wk52hidate":"20170118","wk52lo":"89.4700","wk52lodate":"20160512","xdate":"na","xday":"na","xmonth":"na","xyear":"na","yield":"1.9035"},{"adp_100":"783.1736","adp_200":"772.5119","adp_50":"789.2501","adv_21":"1309188","adv_30":"1184926","adv_90":"1739508","ask":"814.000","ask_time":"00:00","asksz":"1","basis":"na","beta":"0.8451","bid":"800.000","bid_time":"00:00","bidsz":"1","bidtick":"d","chg":"0","chg_sign":"e","chg_t":"na","cl":"802.175","contract_size":"na","cusip":"na","date":"2017-01-20","datetime":"2017-01-20T00:00:00-05:00","days_to_expiration":"na","div":"0.0028","divexdate":"20150427","divfreq":"M","divpaydt":"20150504","dollar_value":"1342781944.731","eps":"27.3400","exch":"NASD","exch_desc":"NASDAQ","hi":"806.910","iad":"na","idelta":"na","igamma":"na","imp_volatility":"na","incr_vl":"105692","irho":"na","issue_desc":"na","itheta":"na","ivega":"na","last":"805.020","lo":"801.690","name":"ALPHABET
+        INC","op_delivery":"na","op_flag":"1","op_style":"na","op_subclass":"na","openinterest":"na","opn":"806.910","opt_val":"na","pchg":"0.00","pchg_sign":"na","pcls":"805.020","pe":"29.4448","phi":"809.480","plo":"801.800","popn":"805.120","pr_adp_100":"782.8926","pr_adp_200":"772.2954","pr_adp_50":"787.9127","pr_date":"2017-01-19","pr_openinterest":"na","prbook":"2.071","prchg":"-2.945","prem_mult":"na","put_call":"na","pvol":"919325","qcond":"0","rootsymbol":"na","secclass":"0","sesn":"na","sho":"345091000","strikeprice":"na","symbol":"GOOG","tcond":"29","timestamp":"1484983646","tr_num":"21282","tradetick":"e","trend":"na","under_cusip":"na","undersymbol":"na","vl":"1670045","volatility12":"0.1915","vwap":"804.039","wk52hi":"816.6800","wk52hidate":"20161025","wk52lo":"663.0600","wk52lodate":"20160208","xdate":"na","xday":"na","xmonth":"na","xyear":"na","yield":"na"}]},
+        "error": "Success" } }'
+    http_version:
+  recorded_at: Sat, 21 Jan 2017 07:27:26 GMT
+recorded_with: VCR 3.0.3

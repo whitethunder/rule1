@@ -1,5 +1,8 @@
+*.gem
 .bundle
-tmp
+.byebug_history
 .env
-driver.rb
 Guardfile
+driver.rb
+coverage/
+tmp/

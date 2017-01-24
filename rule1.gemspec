@@ -21,12 +21,15 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "activesupport", "~> 5.0.1"
   spec.add_runtime_dependency "dotenv", "~> 2.1.2"
   spec.add_runtime_dependency "hashie", "~> 3.4.6"
+  spec.add_runtime_dependency "json", "~> 2.0.3"
   spec.add_runtime_dependency "oauth", "~> 0.5.1"
 
-  spec.add_development_dependency "byebug"
-  spec.add_development_dependency "guard-rspec"
+  spec.add_development_dependency "byebug", "~> 9.0.6"
+  spec.add_development_dependency "codeclimate-test-reporter", "~> 1.0.5"
+  spec.add_development_dependency "guard-rspec", "~> 4.7.3"
   spec.add_development_dependency "rspec", "~> 3.5"
   spec.add_development_dependency "rspec-its", "~> 1.2"
+  spec.add_development_dependency "simplecov", "~> 0.12.0"
   spec.add_development_dependency "webmock", "~> 2.3.2"
   spec.add_development_dependency "vcr", "~> 3.0.3"
 end

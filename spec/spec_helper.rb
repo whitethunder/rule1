@@ -1,6 +1,7 @@
 unless ENV["CODECLIMATE_REPO_TOKEN"].nil?
   require 'codeclimate-test-reporter'
-  CodeClimate::TestReporter.start
+  require "simplecov"
+  SimpleCov.start
 end
 
 require "rubygems"
@@ -21,14 +22,18 @@ RSpec.configure do |config|
     config.default_formatter = 'doc'
   end
   config.order = :random
+
+  if ENV["CODECLIMATE_REPO_TOKEN"]
+    config.after(:suite) do
+      puts
+      `bundle exec codeclimate-test-reporter`
+    end
+  end
 end
 
 VCR.configure do |c|
   c.cassette_library_dir = "spec/cassettes"
   c.hook_into :webmock
   c.configure_rspec_metadata!
-
-  c.filter_sensitive_data("<TESSITURA_IP>") {
-    ENV.fetch("TESSITURA_IP", "tessitura-ip")
-  }
+  c.ignore_hosts "codeclimate.com"
 end
