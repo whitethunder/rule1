@@ -3,7 +3,6 @@ PATH
   specs:
     rule1 (0.0.1)
       activesupport (~> 5.0.1)
-      dotenv (~> 2.1.2)
       hashie (~> 3.4.6)
       json (~> 2.0.3)
       oauth (~> 0.5.1)
@@ -109,6 +108,7 @@ PLATFORMS
 DEPENDENCIES
   byebug (~> 9.0.6)
   codeclimate-test-reporter (~> 1.0.5)
+  dotenv (~> 2.1.2)
   guard-rspec (~> 4.7.3)
   rspec (~> 3.5)
   rspec-its (~> 1.2)

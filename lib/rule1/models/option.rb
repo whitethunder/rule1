@@ -2,7 +2,7 @@ module Rule1
   module Models
     class Option < Model
       property :symbol, from: :rootsymbol
-      property :mark, from: :last, coerce: Float
+      property :last, coerce: Float
       property :bid, coerce: Float
       property :ask, coerce: Float
       property :strike_price, from: :strikeprice, coerce: Float
@@ -10,6 +10,10 @@ module Rule1
       property :subclass, from: :op_subclass
       property :open_interest, from: :pr_openinterest
       property :volume, from: :vl, coerce: Integer
+
+      def mark
+        (bid + ask) / 2
+      end
 
       def risk_capital
         strike_price - mark

@@ -4,7 +4,7 @@ module Rule1
       property :symbols, required: true
 
       def query_string
-        "symbols=#{symbols.join(',')}"
+        "symbols=#{Array(symbols).join(',')}"
       end
     end
   end

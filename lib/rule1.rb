@@ -17,7 +17,8 @@ module Rule1
   end
 
   module Requests
-    autoload :Quotes, "rule1/requests/quotes"
+    autoload :Options, "rule1/requests/options"
+    autoload :Quotes,  "rule1/requests/quotes"
   end
 
   module Resources

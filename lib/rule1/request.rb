@@ -2,7 +2,10 @@ require "hashie"
 
 module Rule1
   class Request < Hashie::Trash
+    include Hashie::Extensions::Dash::Coercion
+    include Hashie::Extensions::IgnoreUndeclared
     include Hashie::Extensions::IndifferentAccess
+    include Hashie::Extensions::MethodAccess
 
     def get(path)
       uri = URI.escape("#{path}.#{format}?#{query_string}")
@@ -11,7 +14,7 @@ module Rule1
     end
 
     def query_string
-      raise "Not Implemented"
+      raise "Not implemented"
     end
 
     def format

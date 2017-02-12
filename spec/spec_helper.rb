@@ -23,12 +23,12 @@ RSpec.configure do |config|
   end
   config.order = :random
 
-  if ENV["CODECLIMATE_REPO_TOKEN"]
-    config.after(:suite) do
-      puts
-      `bundle exec codeclimate-test-reporter`
-    end
-  end
+  # if ENV["CODECLIMATE_REPO_TOKEN"]
+  #   config.after(:suite) do
+  #     puts
+  #     `bundle exec codeclimate-test-reporter`
+  #   end
+  # end
 end
 
 VCR.configure do |c|
