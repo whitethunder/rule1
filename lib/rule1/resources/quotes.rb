@@ -5,6 +5,7 @@ module Rule1
         response = Requests::Quotes.new(symbols: symbols).get(path)
 
         result = response.dig('response', 'quotes', 'quote')
+        result = [result] if result.is_a?(Hash)
 
         result.map! { |r| Models::Quote.new(r) }
       end

@@ -25,7 +25,7 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "byebug", "~> 9.0.6"
   spec.add_development_dependency "codeclimate-test-reporter", "~> 1.0.5"
-  spec.add_development_dependency "dotenv", "~> 2.1.2"
+  spec.add_development_dependency "dotenv", "~> 2.2.0"
   spec.add_development_dependency "guard-rspec", "~> 4.7.3"
   spec.add_development_dependency "rspec", "~> 3.5"
   spec.add_development_dependency "rspec-its", "~> 1.2"
