@@ -1,6 +1,8 @@
 module Rule1
   module Models
     class Option < Model
+      autoload :Expiration, "rule1/models/option/expiration"
+
       property :symbol, from: :rootsymbol
       property :last, coerce: Float
       property :bid, coerce: Float

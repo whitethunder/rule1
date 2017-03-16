@@ -2,19 +2,20 @@ module Rule1
   module Resources
     class Options < Resource
       def self.get(params)
-        response = Requests::Options.new(params).get(path)
-
+        response = Requests::Options.new(params).get("/v1/market/options/search")
         result = response.dig('response', 'quotes', 'quote')
 
         if params[:option_type].downcase == "put"
-          result.map! { |r| Models::Put.new(r) }
+          result.map { |r| Models::Put.new(r) }
         else
-          result.map! { |r| Models::Call.new(r) }
+          result.map { |r| Models::Call.new(r) }
         end
       end
 
-      def self.path
-        "/v1/market/options/search"
+      def self.expirations(symbol)
+        response = Requests::Options::Expirations.new(symbol: symbol).get("/v1/market/options/expirations")
+        result = response.dig('response', 'expirationdates', 'date')
+        result.map { |date| Models::Option::Expiration.new(date: date, symbol: symbol) }
       end
     end
   end

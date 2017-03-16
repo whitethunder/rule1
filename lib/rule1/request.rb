@@ -1,4 +1,5 @@
 require "hashie"
+require "json"
 
 module Rule1
   class Request < Hashie::Trash

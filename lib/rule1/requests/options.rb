@@ -1,6 +1,8 @@
 module Rule1
   module Requests
     class Options < Request
+      autoload :Expirations, "/home/mwhite/code/rule1/lib/rule1/requests/options/expirations"
+
       DEFAULT_FIELDS = "bid,ask,last,days_to_expiration,op_subclass,rootsymbol,strikeprice,pr_openinterest,vl"
 
       property :symbol, required: true
@@ -33,6 +35,3 @@ module Rule1
     end
   end
 end
-
-
-  # path = "/v1/market/options/search.json?symbol=#{symbol}&query=#{query.join(' AND ')}&fids=#{fields.join(',')}"
