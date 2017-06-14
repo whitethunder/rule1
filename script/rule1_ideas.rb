@@ -1,3 +1,6 @@
+#Consider share buybacks to screen for stocks
+#Use earnings estimate revisions to predict market movements
+
 # Regression Line
 11/04 - 11/25
 [1, 1163.44]
@@ -88,7 +91,26 @@ slope = regression[1] - regression[0]
 
 #Standard Deviation
 #https://www.mathsisfun.com/data/standard-deviation-formulas.html
-points = []
+require 'date'
+require 'pg'
+conn = PG.connect(dbname: 'buffett_development', user: 'postgres')
+from_date = Date.today - 366
+result = conn.exec("SELECT close FROM quotes WHERE symbol = 'RUT' AND date > '#{from_date.to_s}'")
+points = result.map { |p| p["close"].to_f }
 mean = points.inject(0.0) { |sum, point| sum += point } / points.size
 sum_of_mean_squares = points.inject(0.0) { |sum, point| result = (point - mean) ** 2; sum += result }
 standard_deviation = Math.sqrt((1.0 / points.count) * sum_of_mean_squares)
+
+
+ANNUAL_TRADING_DAYS = 252 # Consider using 256 since sqrt = 16
+One SD move = price * iv * sqrt(dte / ANNUAL_TRADING_DAYS)
+ex: $50 stock, 30 DTE, 20% IV
+one_SD = 50 * 0.2 * Math.sqrt(30 / 252) = 1.43
+
+
+# Quandl API key
+API_KEY = "xaBSpxEGwnu2MFV6J4rE"
+require 'quandl'
+Quandl::ApiConfig.api_key = API_KEY
+# Quandl::ApiConfig.api_version = '2015-04-09'
+data = Quandl::Dataset.get('WIKI/RUT').data(params: {start_date: '2017-05-01'})

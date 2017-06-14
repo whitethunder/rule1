@@ -45,6 +45,11 @@ def convert_percentage(str)
   str.to_f * 0.01
 end
 
+def third_friday?(date)
+  date = Date.parse(date)
+  (14..21).cover?(date.day) && (4..5).cover?(date.wday)
+end
+
 files = Dir[File.join(RAW_DATA_PATH, "*")].sort; nil
 files.select! { |f| File.file?(f) }; nil
 files.sort_by! { |f| Date.parse(f[/(\d{4}-\d{2}-\d{2}).csv$/, 1]) }; nil
@@ -64,7 +69,9 @@ files.each do |path|
 
   #Import option chains
   contents.scan(/(\d+\s\w{3}\s\d{2})\s+\((\d+)\).+?(?:[^(]+\(([^)]+)\))?\n(.+?)\n$/m) do |expiration, dte, expiration_type, option|
-    expiration_type = "Monthlys" if expiration_type.nil? || expiration_type.empty?
+    if expiration_type.nil? || expiration_type.empty?
+      expiration_type = third_friday?(expiration) ? "Regulars" : ""
+    end
     option.sub!(",,Mark,Prob.OTM,Delta,Mark,Bid,Ask,Exp,Strike,Bid,Ask,Mark,Prob.OTM,Delta,Mark,,", ",,Call Mark,Call Prob.OTM,Call Delta,Call Mark,Call Bid,Call Ask,Call Exp,Strike,Put Bid,Put Ask,Put Mark,Put Prob.OTM,Put Delta,Put Mark,,")
     # puts expiration
     # puts dte
@@ -98,7 +105,7 @@ require 'csv'
 require 'date'
 require 'faraday'
 require 'pg'
-conn = PG.connect(dbname: 'financial_data', user: 'postgres')
+conn = PG.connect(dbname: 'buffett_development', user: 'postgres')
 symbol = "RUT"
 yahoo_symbol = "^RUT"
 from_date = conn.exec("SELECT MAX(date) FROM quotes WHERE symbol = '#{symbol}'").first["max"]
@@ -109,3 +116,37 @@ quotes = CSV.parse(response.body, headers: true)
 quotes.reverse_each do |quote|
   conn.exec("INSERT INTO quotes(symbol, date, open, high, low, close, volume) VALUES('#{symbol.sub('^', '')}', '#{quote['Date']}', %.4f, %.4f, %.4f, %.4f, %d)" % quote.values_at("Open", "High", "Low", "Close", "Volume"))
 end; nil
+
+#Add trade
+OptionTrade.create(
+  symbol: "RUT",
+  contracts: 1,
+  strategy: "BPS",
+  date: "2017-05-17",
+  price: 1365,
+  expiration_date: "2017-06-16",
+  fac: 1345,
+  short_strike: 1240,
+  long_strike: 1235,
+  credit: 0.2,
+  commission: 0.007,
+  entry_probability_otm: 0.92,
+  entry_delta: -0.07,
+  status: "OPEN"
+)
+OptionTrade.create(
+  symbol: "RUT",
+  contracts: 1,
+  strategy: "BCS",
+  date: "2017-05-19",
+  price: 1373,
+  expiration_date: "2017-06-16",
+  fac: 1395,
+  short_strike: 1450,
+  long_strike: 1460,
+  credit: 0.35,
+  commission: 0.007,
+  entry_probability_otm: 0.95,
+  entry_delta: 0.06,
+  status: "OPEN"
+)
