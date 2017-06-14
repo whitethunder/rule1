@@ -4,6 +4,7 @@ module Rule1
       def self.get(params)
         response = Requests::Options.new(params).get("/v1/market/options/search")
         result = response.dig('response', 'quotes', 'quote')
+        result = [result] if !result.nil? && !result.is_a?(Array)
 
         if params[:option_type].downcase == "put"
           result.map { |r| Models::Put.new(r) }

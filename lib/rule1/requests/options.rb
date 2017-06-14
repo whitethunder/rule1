@@ -3,7 +3,7 @@ module Rule1
     class Options < Request
       autoload :Expirations, "/home/mwhite/code/rule1/lib/rule1/requests/options/expirations"
 
-      DEFAULT_FIELDS = "bid,ask,last,days_to_expiration,op_subclass,rootsymbol,strikeprice,pr_openinterest,vl"
+      DEFAULT_FIELDS = "bid,ask,last,days_to_expiration,op_subclass,rootsymbol,strikeprice,pr_openinterest,vl,xdate"
 
       property :symbol, required: true
       property :fields, default: DEFAULT_FIELDS

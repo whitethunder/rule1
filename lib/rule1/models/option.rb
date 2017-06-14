@@ -12,6 +12,7 @@ module Rule1
       property :subclass, from: :op_subclass
       property :open_interest, from: :pr_openinterest
       property :volume, from: :vl, coerce: Integer
+      property :expiration_date, from: :xdate
 
       def mark
         (bid + ask) / 2
